@@ -7,20 +7,19 @@ This is a simple RESTful Blog API built with **Node.js** and **Express.js**, sto
 ##  Project Structure
 
 blog-api/
+├── controllers/        # Logic handlers (controllers)
+│   └── postController.js
 │
-├── controllers/
-│ └── postController.js # Handles all logic for CRUD operations
+├── routes/             # Express route definitions
+│   └── posts.js
 │
-├── routes/
-│ └── posts.js # Express router for handling post endpoints
+├── utils/              # Utility functions
+│   └── fileHelper.js
 │
-├── utils/
-│ └── fileHelper.js # Handles reading and writing to JSON file
-│
-├── posts.json # Simulated database (local file)
-├── app.js # Entry point of the app
-├── package.json
-└── README.md # You're here!
+├── posts.json          # Stores blog posts (as JSON)
+├── app.js              # Main server file
+└── package.json
+
 
 
 ---
@@ -49,7 +48,7 @@ blog-api/
 
 1. Clone the repository:
 
-```bash
+bash
 git clone https://github.com/kingmoballs/blog-api.git
 cd blog-api
 
@@ -63,7 +62,7 @@ npm run dev
 
 ---
 
-###  API Endpoints
+##  API Endpoints
 
 | Method | Endpoint                 | Description           |
 | ------ | ------------------------ | --------------------- |
@@ -76,7 +75,7 @@ npm run dev
 
 ---
 
-### Sample Request (POST)
+## Sample Request (POST)
 
 URL: http://localhost:3000/posts
 Method: POST
@@ -88,7 +87,7 @@ Body (JSON):
 
 ---
 
-### Notes
+## Notes
 
 This project stores data in posts.json, acting like a mock database.
 
@@ -96,7 +95,7 @@ No authentication or database integration is implemented yet — ideal for futur
 
 ---
 
-### Future Improvements
+## Future Improvements
 
 Add database support (MongoDB or PostgreSQL)
 
@@ -108,11 +107,11 @@ Include timestamps and categories
 
 ---
 
-###   Author
+##   Author
 Mobolaji_Samuel – https://github.com/Kingmoballs
 
 ---
 
-###  License
+##  License
 This project is open-source and available under the MIT License.
 
