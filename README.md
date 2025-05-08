@@ -1,23 +1,23 @@
-# Blog API (Express.js)
+# Blog API (Express.js + MongoDB)
 
-This is a simple RESTful Blog API built with **Node.js** and **Express.js**, storing data in a local `posts.json` file. It supports full CRUD operations.
+This is a simple RESTful Blog API built with **Node.js**, **Express.js**, and **MongoDB** via **Mongoose**. It supports full CRUD operations and stores data in a cloud MongoDB database.
 
 ---
 
 ##  Project Structure
 
 blog-api/
-├── controllers/        # Logic handlers (controllers)
-│   └── postController.js
+├── controllers/ # Logic handlers (controllers)
+│ └── postController.js
 │
-├── routes/             # Express route definitions
-│   └── posts.js
+├── models/ # Mongoose schema definitions
+│ └── Post.js
 │
-├── utils/              # Utility functions
-│   └── fileHelper.js
+├── routes/ # Express route definitions
+│ └── posts.js
 │
-├── posts.json          # Stores blog posts (as JSON)
-├── app.js              # Main server file
+├── .env # Environment variables (Mongo URI)
+├── app.js # Main server file
 └── package.json
 
 
@@ -28,6 +28,7 @@ blog-api/
 
 - Get all blog posts
 - Search posts by title using query parameters
+- Get a single post by ID
 - Create a new post
 - Update an existing post
 - Delete a post
@@ -38,9 +39,12 @@ blog-api/
 
 - Node.js
 - Express.js
-- File System (`fs`) module
+- MongoDB (via MongoDB Atlas)
+- Mongoose
 - Postman (for testing)
+- dotenv (for managing env variables)
 - Nodemon (for development)
+
 
 ---
 
@@ -56,7 +60,12 @@ cd blog-api
 
 npm install
 
-3. Run the app with Nodemon:
+3. Set up your .env file:
+Create a .env file in the root with the following:
+MONGO_URI=your_mongodb_connection_string
+
+
+4. Run the app with Nodemon:
 
 npm run dev
 
@@ -68,9 +77,11 @@ npm run dev
 | ------ | ------------------------ | --------------------- |
 | GET    | `/posts`                 | Get all posts         |
 | GET    | `/posts?title=yourQuery` | Filter posts by title |
+| GET    | `/posts/:id`             | Get post by ID        |
 | POST   | `/posts`                 | Create a new post     |
 | PUT    | `/posts/:id`             | Update a post by ID   |
 | DELETE | `/posts/:id`             | Delete a post by ID   |
+
 
 
 ---
@@ -89,21 +100,26 @@ Body (JSON):
 
 ## Notes
 
-This project stores data in posts.json, acting like a mock database.
+The project now uses MongoDB Atlas for data persistence.
 
-No authentication or database integration is implemented yet — ideal for future upgrades.
+You must add a valid MONGO_URI in your .env file to run the server.
+
+File-based storage (posts.json) has been removed in favor of a real database.
 
 ---
 
 ## Future Improvements
-
-Add database support (MongoDB or PostgreSQL)
 
 Implement authentication and authorization
 
 Add user accounts and relationships
 
 Include timestamps and categories
+
+Add pagination and sorting
+
+Deploy to Render / Railway / Vercel
+
 
 ---
 
