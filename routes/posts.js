@@ -5,6 +5,9 @@ const postController = require("../controllers/postController")
 //Get all Posts
 router.get("/", postController.getAllPosts);
 
+//Get a post
+router.get("/:id", postController.getPostById)
+
 //Post a new Post
 router.post("/", postController.createPost);
 
