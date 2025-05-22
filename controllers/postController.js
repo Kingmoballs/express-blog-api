@@ -1,24 +1,23 @@
-const Post = require("../models/Post");
+const Post = require("../models/post");
+const logger = require("../utils/logger")
 
 
 exports.getAllPosts = async (req, res) => {
     const { title } = req.query;
     
     try {
-        let posts;
+        const filter = title
+        ? { title: { $regex: title, $options: "i" } }
+        : {};
 
-        if (title) {
-        posts = await Post.find({
-            title: { $regex: title, $options: "i" }
-        });
-    } else {
-        posts = await Post.find()
-    }
+        const posts = await Post.find(filter).populate("author", "name email")
 
-    res.json(posts);
+        logger.info(`Fetched ${posts.length} post(s)${title ? ` with title containing: '${title}'` : ''}`);
+        res.json(posts);
     }
     catch (error) {
-        res.status(500).json({ message: "Erroe fetching post", error: error.message })
+        logger.error("Error fetching posts", { error: error.message });
+        res.status(500).json({ message: "Error fetching post", error: error.message })
     }
 
     
@@ -28,14 +27,17 @@ exports.getPostById = async (req, res) => {
     const { id } = req.params;
 
     try{
-        const post = await Post.findById(id);
+        const post = await Post.findById(id).populate("author", "name email");
         if (!post) {
+            logger.warn(`Post with ID ${id} not found`);
             return res.status(404).json({ message: "post not found" });
         }
 
+        logger.info(`Fetched post with ID ${id}`);
         res.json(post);
     }
     catch (error) {
+        logger.error(`Error fetching post with ID ${id}`, { error: error.message });
         res.status(500).json({ message: "Error fetching post", error: error.message })
     }
 
@@ -43,19 +45,23 @@ exports.getPostById = async (req, res) => {
 
 exports.createPost = async (req, res) => {
     const { title, content } = req.body;
+    const userId = req.user.id;
 
     if (!title || !content) {
+        logger.warn("Missing title or content")
         return res.status(400).json({ message: "Title and Content required" })
     }
     try {
-        const newPost = new Post({ title, content });
+        const newPost = new Post({ title, content, author: userId });
         const savedPost = await newPost.save()
 
+        logger.info(`Post created by user ${userId}`)
         res.status(201).json({
             message: "post created successfully",
             post: savedPost
         })
     } catch (error) {
+        logger.error("Error creating post", error)
         res.status(500).json({ message: "Error creating post", error: error.message })
     }
 
@@ -64,44 +70,61 @@ exports.createPost = async (req, res) => {
 exports.deletePost = async (req, res) => {
     const { id } = req.params;
 
-    try{
-        const deletedPost = await Post.findByIdAndDelete(id);
+    try {
+        const post = await Post.findById(id);
 
-        if (!deletedPost) {
+        if (!post) {
+            logger.warn(`Delete failed: Post with ID ${id} not found`);
             return res.status(404).json({ message: "Post not found" });
         }
 
-        res.json({ message: "Post deleted successfully" })
-    }
-    catch (error) {
-        res.status(500).json({ message: "Error deleting post", error: error.message })
-    }
+        // Authorization check
+        if (post.author.toString() !== req.user.id) {
+            return res.status(403).json({ message: "You are not authorized to delete this post" });
+        }
 
+        await post.deleteOne();
+        logger.info(`Post with ID ${id} deleted by user ${req.user.id}`);
+        res.json({ message: "Post deleted successfully" });
+    } catch (error) {
+        logger.error(`Error deleting post with ID ${id}`, error);
+        res.status(500).json({ message: "Error deleting post", error: error.message });
+    }
 };
+
 
 exports.updatePost = async (req, res) => {
     const { id } = req.params;
-    const {title, content} = req.body;
+    const { title, content } = req.body;
 
     if (!title || !content) {
-       return res.status(400).json({ message: "Title and content are required" });
+        logger.warn("Update Failed: Missing title or content")
+        return res.status(400).json({ message: "Title and content are required" });
     }
 
-    try{
-        const updatedPost = await Post.findByIdAndUpdate(
-            id,
-            { title, content },
-            { new: true, runValidators: true }
-        );
+    try {
+        const post = await Post.findById(id);
 
-        if (!updatedPost) {
+        if (!post) {
+            logger.warn(`Update failed: Post with ID ${id} not found`);
             return res.status(404).json({ message: "Post not found" });
         }
 
-        res.json({ message: "Post updated successfully", post: updatedPost })
-    }
-    catch (error) {
-        res.status(500).json({ message: "Error updating post", error: error.message })
-    }
+        // Authorization check
+        if (post.author.toString() !== req.user.id) {
+            logger.warn(`Unauthorized update attempt by user ${req.user.id} on post ${id}`);
+            return res.status(403).json({ message: "You are not authorized to update this post" });
+        }
 
-}
+        // Update only after passing the check
+        post.title = title;
+        post.content = content;
+        const updatedPost = await post.save();
+
+        logger.info(`Post with ID ${id} updated successfully by user ${req.user.id}`);
+        res.json({ message: "Post updated successfully", post: updatedPost });
+    } catch (error) {
+        logger.error(`Error updating post with ID ${id}`, error);
+        res.status(500).json({ message: "Error updating post", error: error.message });
+    }
+};

@@ -1,26 +1,30 @@
 const express = require('express');
 const app = express();
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 require("dotenv").config();
-const postRoutes = require('./routes/posts');
+const logger = require("./utils/logger")
 
+const postRoutes = require('./routes/posts');
+const authRoutes = require("./routes/auth");
+
+const PORT = 3000; // ✅ Moved this up
 
 mongoose.connect(process.env.mongoURI)
-.then(() => {
-    console.log("mongoDB connected successfully");
+  .then(() => {
+    logger.info("mongoDB connected successfully");
     app.listen(PORT, () => {
-        console.log(`Server running at http://localhost:${PORT}`)
-    })
-})
-.catch(err => console.log("mongoDB connection error", err))
+      logger.info(`Server running at http://localhost:${PORT}`);
+    });
+  })
+  .catch(err => logger.error("mongoDB connection error", err));
 
 app.use(express.json());
 
 app.use('/posts', postRoutes);
+app.use("/auth", authRoutes); // ✅ Ensure routes/auth.js exports the router
 
 // Fallback route for unmatched requests
 app.use((req, res) => {
-    res.status(404).json({message: 'Route not found'});
+  logger.warn(`Route not found: ${req.originalUrl}`);
+  res.status(404).json({ message: 'Route not found' });
 });
-
-const PORT = 3000;

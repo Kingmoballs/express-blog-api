@@ -1,0 +1,124 @@
+2025-05-22 23:38:35 [info] : mongoDB connected successfully
+2025-05-22 23:39:04 [info] : mongoDB connected successfully
+2025-05-22 23:39:04 [info] : Server running at http://localhost:3000
+2025-05-22 23:39:47 [info] : mongoDB connected successfully
+2025-05-22 23:39:47 [info] : Server running at http://localhost:3000
+2025-05-22 23:39:51 [info] : mongoDB connected successfully
+2025-05-22 23:39:51 [info] : Server running at http://localhost:3000
+2025-05-22 23:40:32 [info] : mongoDB connected successfully
+2025-05-22 23:40:32 [info] : Server running at http://localhost:3000
+2025-05-22 23:47:26 [info] : mongoDB connected successfully
+2025-05-22 23:47:26 [info] : Server running at http://localhost:3000
+2025-05-22 23:47:43 [info] : mongoDB connected successfully
+2025-05-22 23:47:43 [info] : Server running at http://localhost:3000
+2025-05-22 23:48:28 [info] : mongoDB connected successfully
+2025-05-22 23:48:28 [info] : Server running at http://localhost:3000
+2025-05-22 23:48:39 [info] : mongoDB connected successfully
+2025-05-22 23:48:39 [info] : Server running at http://localhost:3000
+2025-05-22 23:48:46 [info] : mongoDB connected successfully
+2025-05-22 23:48:46 [info] : Server running at http://localhost:3000
+2025-05-22 23:49:56 [info] : mongoDB connected successfully
+2025-05-22 23:49:56 [info] : Server running at http://localhost:3000
+2025-05-22 23:50:08 [info] : mongoDB connected successfully
+2025-05-22 23:50:08 [info] : Server running at http://localhost:3000
+2025-05-22 23:50:11 [info] : mongoDB connected successfully
+2025-05-22 23:50:11 [info] : Server running at http://localhost:3000
+2025-05-22 23:50:27 [info] : mongoDB connected successfully
+2025-05-22 23:50:27 [info] : Server running at http://localhost:3000
+2025-05-22 23:50:37 [info] : mongoDB connected successfully
+2025-05-22 23:50:37 [info] : Server running at http://localhost:3000
+2025-05-22 23:50:47 [info] : mongoDB connected successfully
+2025-05-22 23:50:47 [info] : Server running at http://localhost:3000
+2025-05-22 23:51:12 [info] : mongoDB connected successfully
+2025-05-22 23:51:12 [info] : Server running at http://localhost:3000
+2025-05-22 23:51:14 [info] : mongoDB connected successfully
+2025-05-22 23:51:14 [info] : Server running at http://localhost:3000
+2025-05-22 23:51:21 [info] : mongoDB connected successfully
+2025-05-22 23:51:21 [info] : Server running at http://localhost:3000
+2025-05-22 23:51:30 [info] : mongoDB connected successfully
+2025-05-22 23:51:30 [info] : Server running at http://localhost:3000
+2025-05-22 23:51:33 [info] : mongoDB connected successfully
+2025-05-22 23:51:33 [info] : Server running at http://localhost:3000
+2025-05-22 23:51:47 [info] : mongoDB connected successfully
+2025-05-22 23:51:47 [info] : Server running at http://localhost:3000
+2025-05-22 23:52:23 [error] : Error: querySrv ESERVFAIL _mongodb._tcp.myblogdb.kjsveoe.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-05-22 23:52:34 [info] : mongoDB connected successfully
+2025-05-22 23:52:34 [info] : Server running at http://localhost:3000
+2025-05-22 23:52:48 [info] : mongoDB connected successfully
+2025-05-22 23:52:48 [info] : Server running at http://localhost:3000
+2025-05-22 23:55:48 [info] : mongoDB connected successfully
+2025-05-22 23:55:48 [info] : Server running at http://localhost:3000
+2025-05-22 23:56:16 [error] : Error: querySrv ESERVFAIL _mongodb._tcp.myblogdb.kjsveoe.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-05-22 23:56:20 [info] : mongoDB connected successfully
+2025-05-22 23:56:20 [info] : Server running at http://localhost:3000
+2025-05-22 23:57:40 [error] : Error: queryTxt ESERVFAIL myblogdb.kjsveoe.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-05-22 23:58:52 [info] : mongoDB connected successfully
+2025-05-22 23:58:52 [info] : Server running at http://localhost:3000
+2025-05-23 00:00:48 [error] : Error: querySrv ESERVFAIL _mongodb._tcp.myblogdb.kjsveoe.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-05-23 00:00:49 [error] : Error: querySrv ESERVFAIL _mongodb._tcp.myblogdb.kjsveoe.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-05-23 00:03:23 [info] : mongoDB connected successfully
+2025-05-23 00:03:23 [info] : Server running at http://localhost:3000
+2025-05-23 00:03:42 [info] : mongoDB connected successfully
+2025-05-23 00:03:42 [info] : Server running at http://localhost:3000
+2025-05-23 00:04:13 [info] : mongoDB connected successfully
+2025-05-23 00:04:13 [info] : Server running at http://localhost:3000
+2025-05-23 00:04:54 [error] : Error: querySrv ESERVFAIL _mongodb._tcp.myblogdb.kjsveoe.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-05-23 00:10:04 [error] : Error: queryTxt ESERVFAIL myblogdb.kjsveoe.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-05-23 00:16:56 [error] : Error: queryTxt ESERVFAIL myblogdb.kjsveoe.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:291:17)
+2025-05-23 00:17:00 [info] : mongoDB connected successfully
+2025-05-23 00:17:00 [info] : Server running at http://localhost:3000
+2025-05-23 00:17:28 [info] : mongoDB connected successfully
+2025-05-23 00:17:28 [info] : Server running at http://localhost:3000
+2025-05-23 00:17:36 [info] : mongoDB connected successfully
+2025-05-23 00:17:36 [info] : Server running at http://localhost:3000
+2025-05-23 00:18:04 [info] : mongoDB connected successfully
+2025-05-23 00:18:04 [info] : Server running at http://localhost:3000
+2025-05-23 00:18:19 [info] : mongoDB connected successfully
+2025-05-23 00:18:19 [info] : Server running at http://localhost:3000
+2025-05-23 00:18:32 [info] : mongoDB connected successfully
+2025-05-23 00:18:32 [info] : Server running at http://localhost:3000
+2025-05-23 00:18:48 [info] : Fetched 2 post(s)
+2025-05-23 00:20:49 [info] : mongoDB connected successfully
+2025-05-23 00:20:49 [info] : Server running at http://localhost:3000
+2025-05-23 00:22:03 [info] : mongoDB connected successfully
+2025-05-23 00:22:03 [info] : Server running at http://localhost:3000
+2025-05-23 00:22:23 [info] : mongoDB connected successfully
+2025-05-23 00:22:23 [info] : Server running at http://localhost:3000
+2025-05-23 00:24:12 [info] : mongoDB connected successfully
+2025-05-23 00:24:12 [info] : Server running at http://localhost:3000
+2025-05-23 00:24:38 [info] : mongoDB connected successfully
+2025-05-23 00:24:38 [info] : Server running at http://localhost:3000
+2025-05-23 00:25:07 [info] : mongoDB connected successfully
+2025-05-23 00:25:07 [info] : Server running at http://localhost:3000
+2025-05-23 00:25:21 [info] : mongoDB connected successfully
+2025-05-23 00:25:21 [info] : Server running at http://localhost:3000
+2025-05-23 00:25:39 [info] : mongoDB connected successfully
+2025-05-23 00:25:39 [info] : Server running at http://localhost:3000
+2025-05-23 00:25:59 [info] : mongoDB connected successfully
+2025-05-23 00:25:59 [info] : Server running at http://localhost:3000
+2025-05-23 00:26:25 [info] : mongoDB connected successfully
+2025-05-23 00:26:25 [info] : Server running at http://localhost:3000
+2025-05-23 00:26:41 [info] : mongoDB connected successfully
+2025-05-23 00:26:41 [info] : Server running at http://localhost:3000
+2025-05-23 00:26:53 [info] : mongoDB connected successfully
+2025-05-23 00:26:53 [info] : Server running at http://localhost:3000
+2025-05-23 00:28:33 [info] : mongoDB connected successfully
+2025-05-23 00:28:33 [info] : Server running at http://localhost:3000
+2025-05-23 00:29:09 [info] : mongoDB connected successfully
+2025-05-23 00:29:09 [info] : Server running at http://localhost:3000
+2025-05-23 00:29:31 [info] : mongoDB connected successfully
+2025-05-23 00:29:31 [info] : Server running at http://localhost:3000
+2025-05-23 00:29:56 [info] : mongoDB connected successfully
+2025-05-23 00:29:56 [info] : Server running at http://localhost:3000
+2025-05-23 00:30:24 [info] : mongoDB connected successfully
+2025-05-23 00:30:24 [info] : Server running at http://localhost:3000
+2025-05-23 00:34:50 [info] : mongoDB connected successfully
+2025-05-23 00:34:50 [info] : Server running at http://localhost:3000
