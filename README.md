@@ -1,6 +1,6 @@
 # Blog API (Express.js + MongoDB)
 
-This is a simple RESTful Blog API built with **Node.js**, **Express.js**, and **MongoDB** via **Mongoose**. It supports full CRUD operations and stores data in a cloud MongoDB database.
+This is a RESTful Blog API built with **Node.js**, **Express.js**, and **MongoDB** via **Mongoose**. It supports full CRUD operations and stores data in a cloud MongoDB database.
 
 ---
 
