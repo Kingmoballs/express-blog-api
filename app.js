@@ -25,6 +25,11 @@ app.use(express.json());
 app.use('/posts', postRoutes);
 app.use("/auth", authRoutes); // ✅ Ensure routes/auth.js exports the router
 
+// Define root route for Render health check
+app.get("/", (req, res) => {
+  res.send("API is running");
+});
+
 // Fallback route for unmatched requests
 app.use((req, res) => {
   logger.warn(`Route not found: ${req.originalUrl}`);
