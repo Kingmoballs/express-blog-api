@@ -7,7 +7,7 @@ const logger = require("./utils/logger")
 const postRoutes = require('./routes/posts');
 const authRoutes = require("./routes/auth");
 
-const PORT = 3000; // ✅ Moved this up
+const PORT = process.env.PORT || 3000; // ✅ Moved this up
 
 mongoose.connect(process.env.mongoURI)
   .then(() => {
