@@ -3,6 +3,8 @@ const app = express();
 const mongoose = require("mongoose");
 require("dotenv").config();
 const logger = require("./utils/logger")
+const cors = require("cors");
+app.use(cors());
 
 const postRoutes = require('./routes/posts');
 const authRoutes = require("./routes/auth");
