@@ -13,7 +13,7 @@ const verifyToken = (req, res, next) => {
     try{
         const decoder = jwt.verify(token, process.env.JWT_SECRET);
         req.user = decoder; //Attach user info to request
-        logger.info(`Token verified for user ID: ${decoded.id}`);
+        logger.info(`Token verified for user ID: ${decoder.id}`);
         next(); //Proceed to next middleware
     }
     catch (error) {
