@@ -44,28 +44,29 @@ exports.getPostById = async (req, res) => {
 }
 
 exports.createPost = async (req, res) => {
-    const { title, content } = req.body;
+    const { title, content, category } = req.body;
     const userId = req.user.id;
 
-    if (!title || !content) {
-        logger.warn("Missing title or content")
-        return res.status(400).json({ message: "Title and Content required" })
+    if (!title || !content || !category) {
+        logger.warn("Missing title, content, or category");
+        return res.status(400).json({ message: "Title, Content, and Category are required" });
     }
+
     try {
-        const newPost = new Post({ title, content, author: userId });
-        const savedPost = await newPost.save()
+        const newPost = new Post({ title, content, category, author: userId });
+        const savedPost = await newPost.save();
 
-        logger.info(`Post created by user ${userId}`)
+        logger.info(`Post created by user ${userId}`);
         res.status(201).json({
-            message: "post created successfully",
+            message: "Post created successfully",
             post: savedPost
-        })
+        });
     } catch (error) {
-        logger.error("Error creating post", error)
-        res.status(500).json({ message: "Error creating post", error: error.message })
+        logger.error("Error creating post", error);
+        res.status(500).json({ message: "Error creating post", error: error.message });
     }
-
 };
+
 
 exports.deletePost = async (req, res) => {
     const { id } = req.params;
@@ -128,3 +129,22 @@ exports.updatePost = async (req, res) => {
         res.status(500).json({ message: "Error updating post", error: error.message });
     }
 };
+
+
+exports.getPostsByCategory = async (req, res) => {
+    const category = req.params.category;
+  
+    try {
+      const posts = await Post.find({ category }).populate("author", "name email");
+      
+      if (posts.length === 0) {
+        return res.status(404).json({ message: `No posts found in category: ${category}` });
+      }
+  
+      res.json(posts);
+    } catch (error) {
+      logger.error("Error fetching posts by category", error);
+      res.status(500).json({ message: "Error fetching posts by category", error: error.message });
+    }
+  };
+  

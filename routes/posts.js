@@ -18,4 +18,7 @@ router.delete("/:id", verifyToken, postController.deletePost)
 //Update a post
 router.put("/:id",verifyToken, postController.updatePost)
 
+// Get posts by category
+router.get("/category/:category", postController.getPostsByCategory);
+
 module.exports = router
