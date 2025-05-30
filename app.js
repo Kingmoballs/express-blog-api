@@ -1,40 +1,45 @@
 const express = require('express');
-const app = express();
 const mongoose = require("mongoose");
-require("dotenv").config();
-const logger = require("./utils/logger")
+const dotenv = require("dotenv");
 const cors = require("cors");
-app.use(cors());
+const cookieParser = require("cookie-parser");
+const logger = require("./utils/logger");
+
+dotenv.config();
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.use(cors({
+  origin: "https://my-blog-api-0wgd.onrender.com", 
+  credentials: true
+}));
+
+app.use(cookieParser());
+app.use(express.json());
 
 const postRoutes = require('./routes/posts');
 const authRoutes = require("./routes/auth");
 
-const cookieParser = require("cookie-parser");
-app.use(cookieParser());
-
-const PORT = process.env.PORT || 3000; // ✅ Moved this up
-
-mongoose.connect(process.env.mongoURI)
-  .then(() => {
-    logger.info("mongoDB connected successfully");
-    app.listen(PORT, () => {
-      logger.info(`Server running at http://localhost:${PORT}`);
-    });
-  })
-  .catch(err => logger.error("mongoDB connection error", err));
-
-app.use(express.json());
-
 app.use('/posts', postRoutes);
-app.use("/auth", authRoutes); // ✅ Ensure routes/auth.js exports the router
+app.use('/auth', authRoutes);
 
-// Define root route for Render health check
 app.get("/", (req, res) => {
   res.send("API is running");
 });
 
-// Fallback route for unmatched requests
 app.use((req, res) => {
   logger.warn(`Route not found: ${req.originalUrl}`);
   res.status(404).json({ message: 'Route not found' });
 });
+
+mongoose.connect(process.env.mongoURI)
+  .then(() => {
+    logger.info("MongoDB connected successfully");
+    app.listen(PORT, () => {
+      logger.info(`Server running at http://localhost:${PORT}`);
+    });
+  })
+  .catch(err => {
+    logger.error("MongoDB connection error", err);
+  });
