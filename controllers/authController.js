@@ -31,14 +31,17 @@ exports.registerUser = async (req, res) => {
     }
 }
 
-exports.loginUser = async (req,res) => {
+exports.loginUser = async (req, res) => {
     const { email, password } = req.body;
+
     if (!email || !password) {
         logger.warn("Login failed - missing email or password");
-        return res.status(400).json({ message: "Email and Password is required" });
+        return res.status(400).json({ message: "Email and Password are required" });
     }
+
     try {
         const existingUser = await User.findOne({ email });
+
         if (!existingUser) {
             logger.warn(`Login failed - user not found: ${email}`);
             return res.status(401).json({ message: "Invalid Email or Password" });
@@ -51,19 +54,26 @@ exports.loginUser = async (req,res) => {
             return res.status(401).json({ message: "Invalid Email or Password" });
         }
 
-        //Create JWT
+        // Create JWT token
         const token = JWT.sign(
-            { id: existingUser._id, email: existingUser },
+            { id: existingUser._id, email: existingUser.email },
             process.env.JWT_SECRET,
             { expiresIn: process.env.JWT_EXPIRES_IN || "1d" }
+        );
 
-        )
+        // Set cookie with HttpOnly flag
+        res.cookie("token", token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production", // Use HTTPS only in production
+            sameSite: "Strict", // Prevent CSRF
+            maxAge: 24 * 60 * 60 * 1000 // 1 day
+        });
 
         logger.info(`User logged in successfully: ${email}`);
-        res.status(200).json({message: "Login successful", token})
-    }
-    catch (error) {
+        res.status(200).json({ message: "Login successful" });
+
+    } catch (error) {
         logger.error("Error logging in user", { error: error.message });
-        res.status(500).json({ message: "error logging-in", error: error.message })
+        res.status(500).json({ message: "Error logging in", error: error.message });
     }
-}
+};
