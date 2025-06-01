@@ -64,8 +64,8 @@ exports.loginUser = async (req, res) => {
         // Set cookie with HttpOnly flag
         res.cookie("token", token, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === "production", // Use HTTPS only in production
-            sameSite: "Strict", // Prevent CSRF
+            secure: process.env.NODE_ENV === "production", 
+            sameSite: "None", 
             maxAge: 24 * 60 * 60 * 1000 // 1 day
         });
 
