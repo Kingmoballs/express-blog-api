@@ -77,3 +77,13 @@ exports.loginUser = async (req, res) => {
         res.status(500).json({ message: "Error logging in", error: error.message });
     }
 };
+
+// controllers/authController.js
+exports.logoutUser = (req, res) => {
+    res.clearCookie('token', {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "None",
+    });
+    res.status(200).json({ message: 'Logged out successfully' });
+};
