@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3000;
 
 const allowedOrigins = [
   "http://localhost:3000",
-  "https://mobblog.netlify.app/" // Replace with your actual deployed frontend URL
+  "https://mobblog.netlify.app" // Replace with your actual deployed frontend URL
 ];
 
 app.use(cors({
