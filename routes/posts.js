@@ -13,7 +13,7 @@ router.get("/:id", postController.getPostById)
 router.post("/", verifyToken, postController.createPost);
 
 // Get all posts by logged-in user
-router.get("/user/posts", verifyToken, postController.getPostsByLoggedInUser);
+router.get("/myposts", verifyToken, postController.getPostsByLoggedInUser);
 
 //Delete a post
 router.delete("/:id", verifyToken, postController.deletePost)
