@@ -151,12 +151,12 @@ exports.getPostsByCategory = async (req, res) => {
   // Get all posts by the currently logged-in user
 exports.getPostsByLoggedInUser = async (req, res) => {
     try {
-        const userId = req.user.id;
+        const { userId } = req.params;
         const posts = await Post.find({ author: userId }).sort({ createdAt: -1 });
-
         res.status(200).json(posts);
     } catch (error) {
         res.status(500).json({ message: "Failed to fetch user posts", error });
     }
 };
+
   
