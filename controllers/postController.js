@@ -146,17 +146,26 @@ exports.getPostsByCategory = async (req, res) => {
       logger.error("Error fetching posts by category", error);
       res.status(500).json({ message: "Error fetching posts by category", error: error.message });
     }
-  };
-
-  // Get all posts by the currently logged-in user
-exports.getPostsByLoggedInUser = async (req, res) => {
-    try {
-        const userId = req.user.id;
-        const posts = await Post.find({ author: userId }).sort({ createdAt: -1 });
-
-        res.status(200).json(posts);
-    } catch (error) {
-        res.status(500).json({ message: "Failed to fetch user posts", error });
-    }
 };
+
+// Get all posts by the currently logged-in user
+exports.getPostsByLoggedInUser = async (req, res) => {
+  try {
+    console.log("Decoded user from token:", req.user);
+
+    const userId = req.user.id;
+    if (!userId) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+
+    const posts = await Post.find({ author: userId });
+    console.log("Found posts:", posts);
+
+    res.status(200).json(posts);
+  } catch (err) {
+    console.error("Server error in getPostsByLoggedInUser:", err);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
   
